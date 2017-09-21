@@ -5,7 +5,10 @@
 
 // index.js - needs code from another module to run properly, it needs to import code
 
-const sum = require('./sum')
+// const sum = require('./sum') // CommonJS
+
+import sum from './sum' // the file sum.js has code that can be executed so it has a name
+import './image_viewer' // the file image_viewer.js does not execute code, it should just run
 
 const total = sum(10, 8)
 console.log(total)

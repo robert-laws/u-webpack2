@@ -15,7 +15,8 @@ const config = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: 'build/'
   }
 }
 ```
@@ -26,13 +27,15 @@ Notes on the basic configuration
 
 * ``output:`` output property is reference to directory where file should be saved. It is an absolute file reference (uses the path module)
 
-* ``path.resolve(__dirname, 'build')`` built-in module that comes with nodejs, accepts two arguments.
+  * ``path.resolve(__dirname, 'build')`` built-in module that comes with nodejs, accepts two arguments.
 
-  * 1st argument = ``__dirname`` is a constant in nodejs to the current working directory
+    * 1st argument = ``__dirname`` is a constant in nodejs to the current working directory
 
-  * 2nd argument is directory to save output file
+    * 2nd argument is directory to save output file
 
-* ``filename:`` name of file that's outputted
+  * ``filename:`` name of file that's outputted
+
+  * ``publicPath:`` directory path used by any loader creating a explicit file path
 
 ## Exporting the Modules with CommonJS
 
@@ -63,4 +66,13 @@ module: {
 
   * babel-preset-env - contains ruleset for how to transform input code into ES5
 
-* ...
+* CSS
+
+  * using css-loader & style-loader ``use: ['style-loader', 'css-loader']``
+
+## Importing - CommonJS vs ES2015
+
+| Action | CommonJS | ES2015 |
+|--------|----------|--------|
+| Import a module | ``const sum = require('./sum')`` | ``import sum from './sum'`` |
+| Export some code | ``module.exports = sum`` | ``export default sum`` |
